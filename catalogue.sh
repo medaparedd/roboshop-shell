@@ -5,7 +5,6 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-MONGODB_HOST=mongodb.daws74s.online
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -30,29 +29,29 @@ else
     echo -e "$G root user $N"
 fi
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>> $LOGFILE
 
-VALIDATE $? "DISABLING" &>> $LOGFILE
+VALIDATE $? "DISABLING" 
 
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>> $LOGFILE
 
-VALIDATE $? "ENABLING" &>> $LOGFILE
+VALIDATE $? "ENABLING" 
 
-dnf install nodejs -y
+dnf install nodejs -y &>> $LOGFILE
 
-VALIDATE $? "INSTALLING" &>> $LOGFILE
+VALIDATE $? "INSTALLING" 
 
 useradd roboshop
 
-VALIDATE $? "CREATE ROBOSHOP USER" &>> $LOGFILE
+VALIDATE $? "CREATE ROBOSHOP USER" 
 
 mkdir /app
 
-VALIDATE $? "MAKE DIRECTORY" &>> $LOGFILE
+VALIDATE $? "MAKE DIRECTORY" 
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
-VALIDATE $? "DOWNLOADED CATALOGUE APP" &>> $LOGFILE
+VALIDATE $? "DOWNLOADED CATALOGUE APP" 
 
 cd /app 
 
@@ -80,15 +79,15 @@ systemctl start catalogue &>> $LOGFILE
 
 VALIDATE $? "STARTING"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
 VALIDATE $? "COPYING MONGODB REPO"
 
-dnf install mongodb-org-shell -y
+dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "INSTALLING MONGODB CLIENT"
 
-mongo --host $MONGODB_HOST </app/schema/catalogue.js
+mongo --host mongodb.daws74s.online </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "LOADING CATALOGUE INTO MONGODB"
 
