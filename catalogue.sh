@@ -97,8 +97,3 @@ VALIDATE $? "INSTALLING MONGODB CLIENT"
 mongo --host $MONGO_URL </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "LOADING CATALOGUE INTO MONGODB"
-
-
-
-
-
