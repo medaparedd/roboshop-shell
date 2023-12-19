@@ -94,6 +94,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "INSTALLING MONGODB CLIENT"
 
-mongo --host $MONGO_URL </app/schema/catalogue.js &>> $LOGFILE
+mongo --host $MONGO_URL  &>> $LOGFILE
 
 VALIDATE $? "LOADING CATALOGUE INTO MONGODB"
