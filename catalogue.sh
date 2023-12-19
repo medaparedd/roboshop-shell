@@ -5,7 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-MONGO_URL=mongodb.daws74s.online
+
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -94,6 +94,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "INSTALLING MONGODB CLIENT"
 
-mongo --host $MONGO_URL  &>> $LOGFILE
+mongo --host mongodb.daws74s.online </app/schema/catalogue.js    &>> $LOGFILE
 
 VALIDATE $? "LOADING CATALOGUE INTO MONGODB"
