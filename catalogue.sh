@@ -5,8 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-MONGDB_HOST=mongodb.daws74s.online
-
+MONGO_URL=mongodb.daws74s.online
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -77,7 +76,7 @@ VALIDATE $? "COPYING CATALOGUE SERVICE FILE"
 
 systemctl daemon-reload &>> $LOGFILE
 
-VALIDATE $? "DEAMON"
+VALIDATE $? "DEMON"
 
 systemctl enable catalogue &>> $LOGFILE
 
@@ -95,6 +94,6 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "INSTALLING MONGODB CLIENT"
 
-mongo --host mongodb.daws74s.online </app/schema/catalogue.js
+mongo --host $MONGO_URL </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "LOADING CATALOGUE INTO MONGODB"
