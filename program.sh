@@ -15,7 +15,7 @@ echo "age is: $1"
 echo "profession is: $2"
 if [ $name == sudha ]
 then
-    echo "$G give access $N"
+    echo -e "$G give access $N"
 else
-    echo "$R reject $N"
+    echo -e "$R reject $N"
 fi
