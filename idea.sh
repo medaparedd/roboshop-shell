@@ -11,9 +11,9 @@ VALIDATE(){
     fi
 }
 
-if [ $num1==10 ]
+yum install mysql -y
 VALIDATE $? "my number is coming"
 
-if [ $num2==20 ]
+yum install git -y
 VALIDATE $? "my number is coming fast"
 
