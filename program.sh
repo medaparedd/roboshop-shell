@@ -7,7 +7,7 @@ profession=$2
 echo "name is: $name"
 echo "age is: $1"
 echo "profession is: $2"
-if [ name == sudha ]
+if [ $name == sudha ]
 then
     echo "give access"
 else
